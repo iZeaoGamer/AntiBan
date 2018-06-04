@@ -1,7 +1,7 @@
 name: antiban
 main: antiban\Main
 version: 1.0.0
-api: 2.0.0
+api: 3.0.0-ALPHA12
 load: STARTUP
 author: GoldishKirby_eDroid_Applqpak
 description: No more banning people on accident.
