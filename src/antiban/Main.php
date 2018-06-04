@@ -24,7 +24,7 @@
       $this->getLogger()->info(TF::GREEN . "Enabled.");
       $this->getServer()->getPluginManager()->registerEvents($this , $this);
     }
-    public function onCommand(CommandSender $sender, Command $cmd, $label, array $args)
+    public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool
     {
         
          $opstxt = $this->getServer()->getDataPath() . "ops.txt";    
@@ -41,7 +41,7 @@
           if(!(isset($args[0])))
           {
 
-            $sender->sendMessage(TF::RED . "Invalid usage. Usage: /antiban <add | list> [name]");
+            $sender->sendMessage(TF::RED . "§bPlease use: §a/antiban <add | list> [name]");
 
             return true;
 
@@ -59,7 +59,7 @@
               if(isset($players[array_search($players, $name)]))
               {
 
-                $sender->sendMessage(TF::RED . "Player " . $name . " is already in the antiban list.");
+                $sender->sendMessage(TF::RED . "§2Player§c " . $name . " §2is already in the antiban list.");
 
                 return true;
   
@@ -73,7 +73,7 @@
 
                 $this->cfg->save();
 
-                $sender->sendMessage(TF::GREEN . "Successfully added player " . $name . " to the antiban list.");
+                $sender->sendMessage(TF::GREEN . "§dSuccessfully added player§5 " . $name . "§d to the antiban list.");
 
                 return true;
 
@@ -83,7 +83,7 @@
             else
             {
 
-              $sender->sendMessage(TF::RED . "Invalid usage. Usage: /antiban add <name>");
+              $sender->sendMessage(TF::RED . "§bPlease use: §a/antiban add <name>");
 
               return true;
 
@@ -104,7 +104,7 @@
 
             }
 
-            $sender->sendMessage(TF::YELLOW . "-- AntiBan Player List --");
+            $sender->sendMessage(TF::YELLOW . "§6-- AntiBan Player List --");
 
             $sender->sendMessage(TF::PURPLE . $list);
 
@@ -114,7 +114,7 @@
           else
           {
 
-            $sender->sendMessage(TF::RED . "Invalid usage. Usage: /antiban <add | list> [name]");
+            $sender->sendMessage(TF::RED . "§bPlease use: §a /antiban <add | list> [name]");
 
             return true;
 
@@ -130,7 +130,7 @@
     {
       $command = explode(" ", $event->getMessage());
 
-      if($command[0] === "/ban" or $command[0] === "/ban-ip" or $command[0] === "/devban")
+      if($command[0] === "/ban" or $command[0] === "/ban-ip" or $command[0] === "/devban" or $command[0] === "/tban")
       {
 
         if(isset($command[1]))
@@ -144,7 +144,7 @@
             if($command[1] === $player)
             {
 
-              $sender->sendMessage(TF::RED . "The player you are trying to ban is in the AntiBan player list.");
+              $sender->sendMessage(TF::RED . "§2The player you are trying to ban is in the AntiBan player list.");
 
               $event->setCancelled(true);
 
@@ -168,5 +168,6 @@
     }
 
   }
-
-?>
+  return true;
+  }
+}
