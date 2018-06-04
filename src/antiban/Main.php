@@ -1,7 +1,5 @@
 <?php
-
   namespace antiban;
-
   use pocketmine\plugin\PluginBase;
   use pocketmine\event\Listener;
   use pocketmine\event\player\PlayerCommandPreprocessEvent;
@@ -86,6 +84,7 @@
         break;
       }
     }
+return true;
 }
     public function onCommandPreprocess(PlayerCommandPreprocessEvent $event)
     {
